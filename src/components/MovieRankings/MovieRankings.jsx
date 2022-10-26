@@ -36,7 +36,6 @@ const MovieRankings = (props) => {
   useEffect(() => {
     if (movies.length <= 0) fetchMovies();
   }, []);
-  console.log(filter);
   return (
     <Container className="mt-5">
       <StyledTitle>Movie Rankings</StyledTitle>

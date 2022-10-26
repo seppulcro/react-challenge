@@ -1,4 +1,4 @@
-import "@fontsource/roboto";
+import "@fontsource/roboto/index.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styled from "styled-components";
 import MovieRankings from "./components/MovieRankings/MovieRankings";

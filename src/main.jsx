@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 
-const theme = {
+export const theme = {
   colors: {
     white: "#FFFFFF",
     tableFont: "#536B7A",
@@ -19,8 +19,12 @@ const theme = {
   },
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>
+ReactDOM.createRoot(
+  document.getElementById("root") || document.createElement("div")
+).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
 );

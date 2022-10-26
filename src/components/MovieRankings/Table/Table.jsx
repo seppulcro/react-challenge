@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spinner, Table } from "react-bootstrap";
 import styled from "styled-components";
-const SCROLL_THRESHOLD = 150;
+const SCROLL_THRESHOLD = 560;
 
 const MoviesTable = ({
   movies,
@@ -9,9 +9,10 @@ const MoviesTable = ({
   setShowModal,
   fetchMovies,
   filter,
+  defaultLoading,
 }) => {
   const containerRef = useRef(null);
-  const [loading, isLoading] = useState(false);
+  const [loading, isLoading] = useState(defaultLoading ? true : false);
 
   useEffect(() => {
     const { current } = containerRef;
@@ -23,9 +24,13 @@ const MoviesTable = ({
     }
   });
 
-  const scrollHandler = ({ target: { scrollTop, scrollTopMax } }) => {
+  const scrollHandler = ({ target: { scrollTop, scrollHeight } }) => {
+    console.log(
+      scrollHeight - scrollTop,
+      scrollHeight - scrollTop <= SCROLL_THRESHOLD
+    );
     if (!loading && filter === null)
-      if (scrollTopMax - scrollTop <= SCROLL_THRESHOLD) {
+      if (scrollHeight - scrollTop <= SCROLL_THRESHOLD) {
         isLoading(true);
         fetchMovies().then(() => {
           isLoading(false);
@@ -34,7 +39,11 @@ const MoviesTable = ({
   };
 
   return (
-    <TableContainer ref={containerRef} {...{ className }}>
+    <TableContainer
+      ref={containerRef}
+      {...{ className }}
+      data-testid="scrollable-table"
+    >
       <StyledTable responsive>
         <thead>
           <tr>
@@ -56,6 +65,7 @@ const MoviesTable = ({
                 <td>{revenue ? `$${revenue}M` : "N/A"}</td>
                 <td>
                   <i
+                    data-testid={`view-details-icon-${i}`}
                     className="bi bi-eye-fill"
                     onClick={() => setShowModal(id)}
                   />
@@ -66,7 +76,10 @@ const MoviesTable = ({
       </StyledTable>
 
       {isLoading === true && (
-        <div className="d-flex flex-row justify-content-center">
+        <div
+          className="d-flex flex-row justify-content-center"
+          data-testid="table-spinner-container"
+        >
           <Spinner
             as="span"
             animation="border"
