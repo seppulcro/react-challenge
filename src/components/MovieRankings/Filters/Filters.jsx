@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Badge, Form } from "react-bootstrap";
 import styled from "styled-components";
 const START_YEAR = 2016;

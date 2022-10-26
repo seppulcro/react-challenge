@@ -1,9 +1,8 @@
-import { useState } from "react";
+import "@fontsource/roboto";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import styled from "styled-components";
 import MovieRankings from "./components/MovieRankings/MovieRankings";
 import Navbar from "./components/Navbar/Navbar";
-import "@fontsource/roboto";
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   return (

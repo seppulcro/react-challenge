@@ -1,12 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Container, Modal } from "react-bootstrap";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import styled from "styled-components";
 import Filters from "./Filters/Filters";
 import MovieModal from "./Modal/Modal";
 import MoviesTable from "./Table/Table";
-import axios from "axios";
-import styled from "styled-components";
 
 const MOVIES_PER_PAGE = 25;
 
